@@ -81,9 +81,9 @@ const ServiceLayout = () => {
     axios.get("/setting/getsetting")
       .then(res => {
         setLoading(false)
-        var sorted = res.data.setting.serviceOptions.sort((a,b)=>{
+        var sorted = res.data.setting?.serviceOptions ? res.data.setting.serviceOptions.sort((a,b)=>{
           return parseInt(a.position) - parseInt(b.position)
-        })
+        }) : []
         setOptions(sorted)
       })
   }
@@ -149,10 +149,10 @@ const ServiceLayout = () => {
     let data = {
       category:category._id,
       position,
-      p1:p1._id,
-      p2:p2._id,
-      p3:p3._id,
-      p4:p4._id,
+      p1:p1?p1._id:'',
+      p2:p2?p2._id:'',
+      p3:p3?p3._id:'',
+      p4:p4?p4._id:'',
     }
 
    
