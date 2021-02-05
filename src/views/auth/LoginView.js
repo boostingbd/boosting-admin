@@ -32,7 +32,7 @@ const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const [emailorusername, setEmailorusername] = useState("")
+  const [mobile, setMobile] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
     const [isLoading, setLoading] = useState(false)
@@ -41,7 +41,7 @@ const LoginView = () => {
     e.preventDefault()
     setLoading(true)
     let data = {
-        emailorusername,
+        mobile,
         password
     }
     axios.post(`${process.env.REACT_APP_API}/user/login`, data)
@@ -102,13 +102,13 @@ const LoginView = () => {
                 
                 <TextField
                   fullWidth
-                  label="Email or username"
+                  label="Mobile NO:"
                   margin="normal"
                   name="emailorusername"
                   type="text"
                   variant="outlined"
-                  value={emailorusername}
-                  onChange={(e)=>setEmailorusername(e.target.value)}
+                  value={mobile}
+                  onChange={(e)=>setMobile(e.target.value)}
                 />
                 <TextField
                   fullWidth
