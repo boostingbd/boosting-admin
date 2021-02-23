@@ -117,7 +117,7 @@ export default function MuiDrawer({ isOpen, setIsOpen, selecetedProduct, toggleD
       setVAT(selecetedProduct.VAT)
       setCategory(selecetedProduct.category?._id||'')
       setProductImages(selecetedProduct.productImages)
-      handleSetCat(selecetedProduct.category)
+      handleSetCat(selecetedProduct.subCategory)
       setChangeImage(false)
       
     } else {
@@ -148,7 +148,7 @@ export default function MuiDrawer({ isOpen, setIsOpen, selecetedProduct, toggleD
   }, [])
 
   const handleSave = () => {
-    if(title === '' || price === '' || selectedImages.length === 0 || SKU === '' || VAT === '' || subCategory === ''){
+    if(title === '' || price === '' || selectedImages.length === 0 || SKU === '' || VAT === '' || category === ''){
       return alert('please fill all the fields')
     }
     setLoading(true)
@@ -163,7 +163,8 @@ export default function MuiDrawer({ isOpen, setIsOpen, selecetedProduct, toggleD
       formData.append("productImg", img)
     })
     
-    formData.append("category", subCategory)
+    formData.append("category", category)
+    formData.append("subCategory", subCategory)
 
     axios.post('/product/create', formData)
       .then(res => {
@@ -178,7 +179,7 @@ export default function MuiDrawer({ isOpen, setIsOpen, selecetedProduct, toggleD
 
   const handleEdit=(id)=>{
    
-    if(title === '' || price === '' ||  SKU === '' || VAT === '' || subCategory === ''){
+    if(title === '' || price === '' ||  SKU === '' || VAT === '' || category === ''){
       return alert('please fill all the fields')
     }
     if(changeImage){
@@ -197,7 +198,8 @@ export default function MuiDrawer({ isOpen, setIsOpen, selecetedProduct, toggleD
     formData.append("price", price)
     formData.append("VAT", VAT)
     formData.append("SKU", SKU)
-    formData.append("category", subCategory)
+    formData.append("category", category)
+    formData.append("subCategory", subCategory)
 
     if(changeImage){
       selectedImages.map(img=>{
